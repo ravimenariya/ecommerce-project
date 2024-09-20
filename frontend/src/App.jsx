@@ -1,10 +1,18 @@
-import Signup from "./pages/Signup" 
-import {Routes , Route} from 'react-router-dom'
+import Signup from "./pages/Signup"
+import { Routes, Route } from 'react-router-dom'
+import { Toaster } from "sonner";
+
 
 export default function App() {
   return (
-   <Routes>
-    <Route path="/register" element={<Signup/>} />
-   </Routes>
+    <div>
+      <Routes>
+        <Route path="/register" element={<Signup />} />
+
+      </Routes>
+      {/* <Toaster position="bottom-right" /> */}
+      {/* <Toaster position="bottom-left" /> */}
+
+    </div>
   )
 }
