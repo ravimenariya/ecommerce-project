@@ -16,3 +16,13 @@ export default function App() {
     </div>
   )
 }
+
+//NOTE keywords in react-redux and @reduxtoolkit
+//actions
+//reducers
+//useDispatch
+//createSlice
+//store
+//initialState
+//useSelector
+//provider

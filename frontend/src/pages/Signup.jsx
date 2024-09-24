@@ -1,9 +1,8 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-
+import axios from 'axios'
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from "zod";
-import axios from "axios";
 import { toast } from "sonner";
 import { Toaster } from "sonner";
 
@@ -36,6 +35,7 @@ function Signup() {
       toast.error(err.response.data.message);
     }
   };
+
 
   return (
     <div className="flex justify-center items-center min-h-screen">
@@ -78,7 +78,7 @@ function Signup() {
           />
           {errors.password && <p className='text-red-500 font-semibold'>{errors.password.message}</p>}
           <button
-            className="bg-blue-500 px-8 py-2 rounded-md w-full mt-3 text-white"
+            className="bg-black px-8 py-2 rounded-md w-full mt-3 text-white"
             type="submit"
           >
             Signup
