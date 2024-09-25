@@ -1,5 +1,7 @@
 const User = require('../models/userModel');
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+
 exports.signUp = async (req, res, next) => {
   try {
     const { email } = req.body;
@@ -27,6 +29,7 @@ exports.signUp = async (req, res, next) => {
 exports.login = async (req, res, next) => {
   //step 1 check if user is registered 
   try {
+    console.log("req.body => ", req.body);
     const { email, password } = req.body;
     const user = await User.findOne({ email });
     if (!user) {
@@ -43,8 +46,17 @@ exports.login = async (req, res, next) => {
       message: "Login Successfully"
     })
 
+    //generate the tooken and send it to the frontend
+    const token = jwt.sign({ id: user._id, name: user.name, role: user.role }, 'this-is-my-secret-string', { expiresIn: '30d' })
+
+    res.status(200).json({
+      message: "Login Successfully",
+      token
+    })
+
   } catch (error) {
     next(error)
   }
 
 }
+
