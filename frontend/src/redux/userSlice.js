@@ -5,6 +5,9 @@ import {
 } from "@reduxjs/toolkit"
 import axios from "axios"
 import { toast } from "sonner"
+import { jwtDecode } from 'jwt-decode';
+import { Link, Navigate, useNavigate, useLocation } from 'react-router-dom';
+
 export const Register = createAsyncThunk('/user/register', async (data, { rejectWithValue }) => {
    try {
       const res = await axios.post('http://localhost:3000/api/register', data)
@@ -46,7 +49,7 @@ const userSlice = createSlice({
    extraReducers: (builder) => {
       builder.addCase(Register.pending, (state) => {
          state.loading = true;
-         state.error = null
+         state.error = null;
       }).addCase(Register.fulfilled, (state) => {
          state.loading = false;
          state.error = null
@@ -57,9 +60,25 @@ const userSlice = createSlice({
       }).addCase(userLogin.pending, (state) => {
          state.loading = true
       }).addCase(userLogin.fulfilled, (state, action) => {
-         console.log(action.payload)
+
          state.loading = false
+         const { token } = action.payload
+         console.log(typeof (token));
+         const { name, role } = jwtDecode(token)
+         //update the initial state
+         state.role = role;
+         state.token = token;
+         state.name = name;
+         //save the token , role in localstorage
+         localStorage.setItem("token", token)
+         localStorage.setItem('role', role)
+         localStorage.setItem('name', name)
          toast.success("Login Successfull")
+         // if (role === "user" && location.pathname !== "/") {
+         //    navigate('/')
+         // } else if (role === 'admin' && location.pathname !== "/dashboard") {
+         //    navigate('/dashboard')
+         // }
       }).addCase(userLogin.rejected, (state, action) => {
          console.log(action.payload)
          state.loading = false,

@@ -8,9 +8,17 @@ const cors = require('cors')
 //parse the data from the req.body
 app.use(cors());
 
+require('dotenv').config()
+// console.log(process.env);
+
+// require('./config/passportConfig')
+
 app.use(express.json());
 
 dbConnect()
+
+
+
 
 
 app.use('/api', require('./routes/userRoutes'))

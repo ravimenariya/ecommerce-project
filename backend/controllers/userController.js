@@ -42,12 +42,12 @@ exports.login = async (req, res, next) => {
       throw new Error("Password do not match, Please try again")
     }
 
-    res.status(200).json({
-      message: "Login Successfully"
-    })
+
 
     //generate the tooken and send it to the frontend
     const token = jwt.sign({ id: user._id, name: user.name, role: user.role }, 'this-is-my-secret-string', { expiresIn: '30d' })
+
+    console.log("generation of token => ", token);
 
     res.status(200).json({
       message: "Login Successfully",
