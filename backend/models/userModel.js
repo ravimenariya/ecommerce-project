@@ -20,14 +20,13 @@ const userSchema = new mongoose.Schema({
     },
     phone: {
         type: String,
-        required: [true, "Phone no. is required"],
         unique: true
     },
     password: {
         type: String,
-        required: [true, "Password is Required"],
         validate: {
             validator: function (value) {
+                if (this.googleId) return true;
                 return validator.isStrongPassword(value, {
                     minLength: 8, minLowercase: 1, minUppercase: 1, minNumbers: 1, minSymbols: 1
                 })
@@ -40,10 +39,11 @@ const userSchema = new mongoose.Schema({
         enum: ['admin', 'user'],
         default: 'user'
     },
+
     googleId: {
         type: String,
-        unique: true,
-        sparse: true
+        unqiue: true,
+        sparse: true //null when the google id is not available when we signup the user
     }
 })
 

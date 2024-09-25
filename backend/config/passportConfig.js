@@ -1,18 +1,17 @@
 const passport = require('passport');
-const GoogleStratergy = require('passport-google-oauth20').stratergy;
+const GoogleStrategy = require('passport-google-oauth20').Strategy
 const User = require('../models/userModel')
-
 require('dotenv').config()
-console.log(process.env.clientID);
+console.log(process.env.clientID)
 
-isStrongPassword.use(new GoogleStratergy({
+passport.use(new GoogleStrategy({
     clientID: process.env.clientID,
     clientSecret: process.env.clientSecret,
     callbackURL: process.env.callbackURL
 }, async (profile, done) => {
     console.log(profile)
-    const { id: googleId, displayNamr: name, emails } = profile;
 
+    const { id: googleId, displayName: name, emails } = profile
     const email = emails.value[0];
 
     try {
@@ -29,4 +28,18 @@ isStrongPassword.use(new GoogleStratergy({
     } catch (error) {
         done(error, null)
     }
+
 }))
+
+passport.serializeUser((user, done) => {
+    done(null, user.id)
+})
+
+passport.deserializeUser(async (id, done) => {
+    try {
+        const user = await User.findById(id)
+        done(null, user)
+    } catch (error) {
+        done(error, null)
+    }
+})
