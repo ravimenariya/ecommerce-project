@@ -9,6 +9,7 @@ passport.use(new GoogleStrategy({
     clientSecret: process.env.clientSecret,
     callbackURL: process.env.callbackURL
 }, async (accessToken, refreshToken, profile, done) => {
+    console.log("printing profile from passportConfig");
     console.log(profile)
 
     const { id: googleId, displayName: name, emails } = profile
@@ -24,8 +25,13 @@ passport.use(new GoogleStrategy({
                 email
             })
         }
+        console.log("leaving passportConfig");
 
-    }))
+    } catch (err) {
+        console.log(err)
+        throw new Error("error in login with google");
+    }
+}))
 
 passport.serializeUser((user, done) => {
     done(null, user.id)

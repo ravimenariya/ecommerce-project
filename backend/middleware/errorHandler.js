@@ -1,7 +1,7 @@
 const errorHandler = (err, req, res, next) => {
   let statusCode = 500;
   let errMessage = err.message;
-
+  console.log("in global error handler")
   if (err.name === 'ValidationError') {
     console.log('error', err.errors);
     console.log(Object.values(err.errors));

@@ -26,11 +26,7 @@ app.use(passport.initialize())
 app.use(passport.session())
 app.use(express.json());
 
-
 dbConnect();
-
-
-
 
 
 app.use('/api', require('./routes/userRoutes'))
