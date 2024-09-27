@@ -40,3 +40,30 @@ exports.getProduct = async (req, res) => {
         next(eror)
     }
 }
+
+
+
+exports.deleteProduct = async (req, res) => {
+    try {
+        const product = await Product.findByIdAndDelete(req.params.id);
+        res.status(200).json({
+            length: product.length,
+            product
+        })
+    }
+    catch (err) {
+        next(err)
+    }
+}
+
+exports.updateProduct = async (req, res) => {
+    try {
+        const product = await Product.findByIdAndUpdate(req.params.id, req.body);
+        res.status(200).json({
+            length: product.length,
+            product
+        })
+    } catch (err) {
+        next(err)
+    }
+}

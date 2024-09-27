@@ -24,14 +24,14 @@ const schema = z.object({
 function Signup() {
   const { loading } = useSelector((state) => state.user);
   const dispatch = useDispatch();
- const navigate = useNavigate();
+  const navigate = useNavigate();
   const { handleSubmit, register, formState: { errors } } = useForm({
     resolver: zodResolver(schema),
   });
 
-  const onSubmit =async (data) => {
-   await dispatch(Register(data));
-      navigate('/login')
+  const onSubmit = async (data) => {
+    await dispatch(Register(data));
+    navigate('/login')
   };
 
   return (
