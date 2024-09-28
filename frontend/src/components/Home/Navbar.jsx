@@ -71,13 +71,15 @@ function Navbar() {
               <span className="text-xs font-medium hover:underline transition-all duration-200">
                 Cart
               </span>
+              {/* {totalQuantity > 0 ? <span className='h-4 w-4 flex top-[-11px] right-[2px] items-center text-[9px] p-1 rounded-full justify-center bg-lime-500 absolute'>{totalQuantity}</span> : null} */}
+
             </Link>
 
 
             <button onClick={handleLogout}>
               <GoSignOut />
               <span className="text-xs font-medium hover:underline transition-all duration-200">
-                Log-Out kar
+                Log-Out
               </span>
             </button>
 

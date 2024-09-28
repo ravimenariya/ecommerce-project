@@ -29,7 +29,7 @@ export default function App() {
           <Route path="/" element={<Homepage />} />
         </Route> */}
 
-        <Route element={<PrivateRoute allowrole={['admin']} />}>
+        <Route element={<PrivateRoute allowrole={['admin']} path="Dashboard" />}>
 
           <Route path="/dashboard" element={<Dashboard />}>
             <Route index element={<Product />} />
