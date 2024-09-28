@@ -138,6 +138,7 @@ exports.login = async (req, res, next) => {
 
 exports.googleAuth = async (req, res) => {
   try {
+    console.log("in userController google auth");
     console.log(req.user)
     const user = req.user
     const token = jwt.sign({ id: user._id, name: user.name, role: user.role }, 'this-is-my-secret-string', { expiresIn: '30d' })

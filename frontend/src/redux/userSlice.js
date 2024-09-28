@@ -48,6 +48,8 @@ const userSlice = createSlice({
    initialState,
    reducers: {
       Logout: (state) => {
+         console.log("in Logout userSlice");
+
          state.token = null,
             state.role = null,
             state.name = null,

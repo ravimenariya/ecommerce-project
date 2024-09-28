@@ -7,8 +7,30 @@ import { Link } from 'react-router-dom';
 import Navitems from './Navitems';
 import { NavData } from './data';
 import { GoSignOut } from "react-icons/go";
+
+
+import { useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom';
+import { Logout } from '../../redux/userSlice';
+
+
 function Navbar() {
- const name = localStorage.getItem('name')
+  const name = localStorage.getItem('name')
+  const role = localStorage.getItem('role')
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  let handleLogout = async () => {
+    try {
+      console.log("in handleLogout");
+      await dispatch(Logout());
+      navigate('/login');
+    } catch (error) {
+      next(error)
+    }
+  }
+
   return (
     <header className="p-4 sticky top-0 z-50  bg-white border border-gray-200">
       <div>
@@ -29,28 +51,36 @@ function Navbar() {
 
           <div className="flex items-center space-x-10">
 
-              <Link to="/profile">
+            {role == "admin" && <Link to="/dashboard">
+              <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-
+              2 px-4 rounded">
+                Go to
+                Dashboard
+              </button>
+            </Link>}
+
+            <Link to="/profile">
               <AiOutlineUser />
               <span className="text-xs font-medium hover:underline transition-all duration-200">
-               {name ? name : 'User'}
+                {name ? name : 'User'}
               </span>
             </Link>
-           
+
             <Link to="/cart" className='relative'>
               <HiOutlineShoppingBag />
               <span className="text-xs font-medium hover:underline transition-all duration-200">
                 Cart
               </span>
-             </Link>
-            
-           
-
-             <Link to="/saved">
-           <GoSignOut />
-              <span className="text-xs font-medium hover:underline transition-all duration-200">
-               Log-Out
-              </span>
             </Link>
+
+
+            <button onClick={handleLogout}>
+              <GoSignOut />
+              <span className="text-xs font-medium hover:underline transition-all duration-200">
+                Log-Out kar
+              </span>
+            </button>
+
           </div>
         </div>
 

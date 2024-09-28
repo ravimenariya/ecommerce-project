@@ -65,7 +65,7 @@ passport.use(new GoogleStrategy({
     const email = emails[0].value
 
     try {
-        let user = await User.findOne({ googleId })
+        let user = await User.findOne({ email })
         if (!user) {
             user = await User.create({
                 name,

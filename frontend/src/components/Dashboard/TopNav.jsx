@@ -11,6 +11,7 @@ function TopNav() {
 
   let handleLogout = async () => {
     try {
+      console.log("in handleLogout");
       await dispatch(Logout());
       navigate('/login');
     } catch (error) {
