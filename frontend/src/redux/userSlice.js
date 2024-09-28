@@ -46,6 +46,16 @@ const initialState = {
 const userSlice = createSlice({
    name: "user",
    initialState,
+   reducers: {
+      Logout: (state) => {
+         state.token = null,
+            state.role = null,
+            state.name = null,
+            localStorage.removeItem('token'),
+            localStorage.removeItem('role'),
+            localStorage.removeItem('name')
+      }
+   },
    extraReducers: (builder) => {
       builder.addCase(Register.pending, (state) => {
          state.loading = true;
@@ -88,7 +98,11 @@ const userSlice = createSlice({
    }
 })
 
-export default userSlice.reducer
+export const { Logout } = userSlice.actions
+
+export default userSlice.reducer;
+
+
 
 //async thunk => we can use this middleware to implement all the asynchronous logic in the redux like api calling and then handle the states of the api in the slice like pending , failed , or fulfilled
 
