@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { fetchProduct } from '../../redux/productSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { DataGrid } from '@mui/x-data-grid';
@@ -12,6 +12,7 @@ import { useForm } from 'react-hook-form';
 import { createProduct } from '../../redux/productSlice';
 function Product() {
   const { handleSubmit, register } = useForm();
+  const [isEdit, setIsEdit] = useState(false);
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -25,20 +26,26 @@ function Product() {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 400,
-    bgcolor: 'background.paper',
-
-    boxShadow: 24,
+    width: 1000, // Slightly wider for more spacing
+    bgcolor: 'rgb(30 30 40)', // Darker background for a more subdued look
+    color: 'white',
+    borderRadius: '12px', // Rounded corners for a modern look
+    boxShadow: '5px 5px 20px rgba(75,75,75,0.7),-5px -5px 20px rgba(75,75,75,0.7)', // Softer, more diffused shadow for better focus
     p: 4,
   };
 
+
   const { product } = useSelector((state) => state.product);
 
+  const handleEdit = () => {
+    setIsEdit(true)
+    handleOpen()
+  }
   const columns = [
     {
       field: 'image',
       headerName: 'Image',
-      width: 100,
+      width: 120,
       renderCell: (params) => (
         <div>
           <img
@@ -57,6 +64,7 @@ function Product() {
     {
       field: 'category',
       headerName: 'Category',
+      width: 150
     },
     {
       field: 'description',
@@ -66,6 +74,7 @@ function Product() {
     {
       field: 'discountPrice',
       headerName: 'Discount Price(Rs.)',
+      width: 120
     },
     {
       field: 'stock',
@@ -74,9 +83,10 @@ function Product() {
     {
       field: 'actions',
       headerName: 'Actions',
+      width: 200,
       renderCell: (params) => (
-        <div className="flex m-2 gap-2 cursor-pointer">
-          <FiEdit2 size={26} className="text-blue-500" />
+        <div className="flex m-2 gap-2 cursor-pointer justify-around">
+          <FiEdit2 size={26} onClick={handleEdit} className="text-blue-500" />
 
           <MdDeleteOutline size={26} className="text-red-500" />
         </div>
@@ -84,31 +94,36 @@ function Product() {
     },
   ];
 
-  const onSubmit = async(data) => {
-    console.log(data.discountPercentage)
-   const formData = new FormData() ;
-   formData.append('name', data.name)
-   formData.append('price', data.price)
-   formData.append('image', data.image[0])
-   formData.append('category',data.category)
-   formData.append('stock',data.stock)
-   formData.append('description',data.description)
-   formData.append('discountPercentage',data.discountPercentage)
-   console.log('formdata', formData)
- await dispatch(createProduct(formData))
- dispatch(fetchProduct())
- handleClose()
+  const onSubmit = async (data) => {
+    console.log(data.discountPercentage);
+    const formData = new FormData();
+    formData.append('name', data.name);
+    formData.append('price', data.price);
+    formData.append('image', data.image[0]);
+    formData.append('category', data.category);
+    formData.append('stock', data.stock);
+    formData.append('description', data.description);
+    formData.append('discountPercentage', data.discountPercentage);
+    console.log('formdata', formData);
+    await dispatch(createProduct(formData));
+    dispatch(fetchProduct());
+    handleClose();
+  };
+
+  const handleButtonClick = () => {
+    setIsEdit(false);
+    handleOpen()
   }
 
   return (
     <div className="m-10">
       <button
-        onClick={handleOpen}
+        onClick={handleButtonClick}
         className="bg-blue-500 px-6 py-2 rounded-sm my-4 text-white font-semibold"
       >
         Add Product
       </button>
-      <Box sx={{ height: 400, width: '100%' }}>
+      <Box sx={{ height: 400, width: '85%', display: 'flex', justifyContent: 'center' }}>
         <DataGrid
           rows={product}
           columns={columns}
@@ -120,6 +135,7 @@ function Product() {
             },
           }}
           pageSizeOptions={[5]}
+          style={{ color: "black", backgroundColor: "rgb(100, 150, 200)" }}
         />
       </Box>
       <Modal
@@ -129,61 +145,101 @@ function Product() {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <label>Name</label>
-            <input
-              className="input_field"
-              type="text"
-              {...register('name')}
-              placeholder="Enter name"
-            />
-            <label>Price</label>
-            <input
-              className="input_field"
-              type="number"
-              {...register('price')}
-              placeholder="Enter price"
-            />
-            <label>Image</label>
-            <input
-              className="input_field"
-              type="file"
-              {...register('image')}
-              placeholder="Enter price"
-            />
-            <label>Category</label>
-            <input
-              className="input_field"
-              type="text"
-              {...register('category')}
-              placeholder="Enter category"
-            />
-            <label>Description</label>
-            <input
-              type="text"
-              className="input_field"
-              {...register('description')}
-              placeholder="Enter category"
-            />
-            <label>Stock</label>
-            <input
-              type="text"
-              className="input_field"
-              {...register('stock')}
-              placeholder="Enter Stock"
-            />
-            <label>Discount Percentage</label>
-            <input
-              type="number"
-              className="input_field"
-              {...register(' discountPercentage')}
-              placeholder="Enter Discount"
-            />
-            <button className="bg-blue-500 px-6 py-2 rounded-md mt-2 text-white" type="submit">
-              Add Product
+          <h1 className='space-y-2  h-12  p-3 text-3xl mb-4'>Product Details</h1>
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-20">
+              {/* Name Field */}
+              <div className="space-y-2">
+                <label className="text-gray-300 block">Name</label>
+                <input
+                  className="input_field bg-gray-700 border border-gray-600 rounded-md p-3 text-white w-full focus:ring-2 focus:ring-blue-500 focus:outline-none h-10"
+                  type="text"
+                  {...register('name')}
+                  placeholder="Enter name"
+                />
+              </div>
+
+              {/* Price Field */}
+              <div className="space-y-2">
+                <label className="text-gray-300 block">Price</label>
+                <input
+                  className="input_field bg-gray-700 border border-gray-600 rounded-md p-3 text-white w-full focus:ring-2 focus:ring-blue-500 focus:outline-none h-10"
+                  type="number"
+                  {...register('price')}
+                  placeholder="Enter price"
+                />
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-20">
+              {/* Category Field */}
+              <div className="space-y-2">
+                <label className="text-gray-300 block">Category</label>
+                <input
+                  className="input_field bg-gray-700 border border-gray-600 rounded-md p-3 text-white w-full focus:ring-2 focus:ring-blue-500 focus:outline-none h-10"
+                  type="text"
+                  {...register('category')}
+                  placeholder="Enter category"
+                />
+              </div>
+
+              {/* Stock Field */}
+              <div className="space-y-2">
+                <label className="text-gray-300 block">Stock</label>
+                <input
+                  className="input_field bg-gray-700 border border-gray-600 rounded-md p-3 text-white w-full focus:ring-2 focus:ring-blue-500 focus:outline-none h-10"
+                  type="number"
+                  {...register('stock')}
+                  placeholder="Enter stock"
+                />
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-20">
+              {/* Image Field */}
+              <div className="space-y-2">
+                <label className="text-gray-300 block">Image</label>
+                <input
+                  className="input_field bg-gray-700 border border-gray-600 rounded-md p-3 text-white w-full focus:ring-2 focus:ring-blue-500 focus:outline-none h-10"
+                  type="file"
+                  {...register('image')}
+                />
+              </div>
+
+              {/* Discount Percentage Field */}
+              <div className="space-y-2">
+                <label className="text-gray-300 block">Discount Percentage</label>
+                <input
+                  className="input_field bg-gray-700 border border-gray-600 rounded-md p-3 text-white w-full focus:ring-2 focus:ring-blue-500 focus:outline-none h-10"
+                  type="number"
+                  {...register('discountPercentage')}
+                  placeholder="Enter discount percentage"
+                />
+              </div>
+            </div>
+
+            {/* Description Field */}
+            <div className="space-y-2">
+              <label className="text-gray-300 block">Description</label>
+              <input
+                type="textbox"
+                className="input_field bg-gray-700 border border-gray-600 rounded-md p-3 text-white w-full focus:ring-2 focus:ring-blue-500 focus:outline-none h-10"
+                {...register('description')}
+                placeholder="Enter description"
+              />
+            </div>
+
+            {/* Submit Button */}
+            <button
+              className="bg-blue-500 hover:bg-blue-600 px-6 py-3 rounded-md w-full mt-4 text-white"
+              type="submit"
+            >
+              {isEdit ? "Update Product" : "Add Product"}
             </button>
           </form>
         </Box>
+
+
       </Modal>
     </div>
   );

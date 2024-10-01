@@ -8,27 +8,28 @@ import "slick-carousel/slick/slick-theme.css";
 import './Hero.css'
 function Hero() {
 
-    const  settings = {
+  const settings = {
     dots: true,
     infinite: true,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    autoplay : true ,
-    autoplaySpeed : 2500
+    autoplay: true,
+    autoplaySpeed: 2500,
+    outerWidth: 500
   };
   return (
     <div>
       <Slider  {...settings}>
-<div>
-    <img src={men}/>
-</div>
-<div>
-    <img src={beg}/>
-</div>
-<div>
-    <img src={women}/>
-</div>
+        <div>
+          <img src={men} />
+        </div>
+        <div>
+          <img src={beg} />
+        </div>
+        <div>
+          <img src={women} />
+        </div>
       </Slider>
     </div>
   )

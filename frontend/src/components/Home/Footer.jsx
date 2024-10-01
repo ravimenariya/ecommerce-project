@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 function Footer() {
   return (
-    <footer className=" text-black">
+    <footer className="text-white" style={{ backgroundColor: 'rgb(4, 1, 23)' }}>
       <div className="max-w-7xl mx-auto mt-14 px-8 py-4">
         <div className="flex flex-wrap justify-around">
           <div className="text-center m-8">

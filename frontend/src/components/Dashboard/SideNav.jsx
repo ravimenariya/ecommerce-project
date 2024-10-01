@@ -8,10 +8,10 @@ import logo from '../../assets/logo1.png';
 function SideNav() {
 
   return (
-    <div className="w-64 bg-black text-white flex flex-col">
-      <div className="h-16 flex items-center justify-center font-semibold text-xl border-b border-gray-200">
+    <div className="w-64  text-white flex flex-col border-r" style={{ backgroundColor: 'rgb(2, 1, 17)' }}>
+      <div className="h-16 flex items-center justify-center font-semibold text-xl  border-gray-200 ">
 
-        <h1>Shopping</h1>
+        <h1>Ecommerce Web App</h1>
       </div>
       <nav className="flex-1 px-4 py-6 space-y-2">
         <NavLink to="/" text="HomePage" className="flex items-center space-x-2" icon={<FaHome />} />

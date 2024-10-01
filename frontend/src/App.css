@@ -1,2 +1,26 @@
+* {
+    margin: 0px;
+    padding: 0px;
+
+}
+
+/* Hide scrollbar for Chrome, Safari, and Opera */
+::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge, and Firefox */
+html {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+}
 
 
+body {
+    background-color: rgb(7, 1, 37);
+    /* background-color: rgb(4, 1, 23); */
+
+    color: white;
+}
