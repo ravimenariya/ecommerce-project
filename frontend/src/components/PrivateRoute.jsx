@@ -20,4 +20,4 @@ function PrivateRoute({ allowrole, path = "all" }) {
     )
 }
 
-export default PrivateRoute
+export default PrivateRoute;

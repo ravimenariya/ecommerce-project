@@ -4,7 +4,8 @@ import { useSelector } from 'react-redux';
 
 function ProductList() {
   const { product } = useSelector((state) => state.product);
-  const threeProducts = product;
+  console.log("in product list ", product);
+  const threeProducts = product.slice(0, 3);
   return (
     <div className=" container mx-auto py-8">
       <h1 className="text-center mb-12 text-2xl font-normal leading-wide">

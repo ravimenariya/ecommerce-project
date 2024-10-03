@@ -35,16 +35,13 @@ function ProductCard({ product }) {
           className="absolute bottom-0 opacity-0 w-full translate-y-full group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 ease-in-out"
         >
 
-
-
-
         </div>
       </div>
 
       {/* Product Info */}
       <div className="mt-4">
         <h2 className="text-lg font-semibold text-gray-800">{product.name}</h2>
-        <div className='flex justify-between'>
+        <div className='flex justify-between flex-wrap'>
           <div className="flex justify-center items-center gap-2 mt-2">
             <span className="text-gray-500 line-through">Rs.{product.price}</span>
             <span className="text-red-600 text-lg font-bold">Rs.{product.discountPrice}</span>
