@@ -10,7 +10,7 @@ import { Link, Navigate, useNavigate, useLocation } from 'react-router-dom';
 
 export const Register = createAsyncThunk('/user/register', async (data, { rejectWithValue }) => {
    try {
-      const res = await axios.post('http://localhost:3000/api/register', data)
+      const res = await axios.post('http://localhost:5000/api/register', data)
       console.log(res.data)
       return res.data
    }
@@ -23,7 +23,7 @@ export const Register = createAsyncThunk('/user/register', async (data, { reject
 
 export const userLogin = createAsyncThunk('/user/login', async (data, { rejectWithValue }) => {
    try {
-      const res = await axios.post('http://localhost:3000/api/login', data)
+      const res = await axios.post('http://localhost:5000/api/login', data)
       console.log(res.data)
       return res.data
    }

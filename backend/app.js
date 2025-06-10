@@ -1,7 +1,7 @@
 const express = require('express');
 const colors = require('colors')
 const app = express();
-const PORT = 3000;
+const PORT = 5000;
 const dbConnect = require('./db')
 const errorHandler = require('./middleware/errorHandler')
 const passport = require('passport')
@@ -14,7 +14,7 @@ const cors = require('cors')
 app.use(cors());
 
 //NOTE creating a session whenever login with google hit..
-app.use('/uploads',express.static('uploads'))
+app.use('/uploads', express.static('uploads'))
 app.use(session({
     secret: 'my-secret-string',
     resave: false,

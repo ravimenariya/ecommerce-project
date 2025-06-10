@@ -27,8 +27,8 @@ function Product() {
     left: '50%',
     transform: 'translate(-50%, -50%)',
     width: 1000, // Slightly wider for more spacing
-    bgcolor: 'rgb(30 30 40)', // Darker background for a more subdued look
-    color: 'white',
+    bgcolor: 'white', // Darker background for a more subdued look
+    color: 'black',
     borderRadius: '12px', // Rounded corners for a modern look
     boxShadow: '5px 5px 20px rgba(75,75,75,0.7),-5px -5px 20px rgba(75,75,75,0.7)', // Softer, more diffused shadow for better focus
     p: 4,
@@ -135,7 +135,7 @@ function Product() {
             },
           }}
           pageSizeOptions={[5]}
-          style={{ color: "black", backgroundColor: "rgb(100, 150, 200)" }}
+
         />
       </Box>
       <Modal
@@ -150,9 +150,9 @@ function Product() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-20">
               {/* Name Field */}
               <div className="space-y-2">
-                <label className="text-gray-300 block">Name</label>
+                <label className=" block">Name</label>
                 <input
-                  className="input_field bg-gray-700 border border-gray-600 rounded-md p-3 text-white w-full focus:ring-2 focus:ring-blue-500 focus:outline-none h-10"
+                  className="input_field  border border-gray-600 rounded-md p-3  w-full focus:ring-2 focus:ring-blue-500 focus:outline-none h-10"
                   type="text"
                   {...register('name')}
                   placeholder="Enter name"
@@ -161,9 +161,9 @@ function Product() {
 
               {/* Price Field */}
               <div className="space-y-2">
-                <label className="text-gray-300 block">Price</label>
+                <label className=" block">Price</label>
                 <input
-                  className="input_field bg-gray-700 border border-gray-600 rounded-md p-3 text-white w-full focus:ring-2 focus:ring-blue-500 focus:outline-none h-10"
+                  className="input_field  border border-gray-600 rounded-md p-3  w-full focus:ring-2 focus:ring-blue-500 focus:outline-none h-10"
                   type="number"
                   {...register('price')}
                   placeholder="Enter price"
@@ -174,9 +174,9 @@ function Product() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-20">
               {/* Category Field */}
               <div className="space-y-2">
-                <label className="text-gray-300 block">Category</label>
+                <label className=" block">Category</label>
                 <input
-                  className="input_field bg-gray-700 border border-gray-600 rounded-md p-3 text-white w-full focus:ring-2 focus:ring-blue-500 focus:outline-none h-10"
+                  className="input_field  border border-gray-600 rounded-md p-3 w-full focus:ring-2 focus:ring-blue-500 focus:outline-none h-10"
                   type="text"
                   {...register('category')}
                   placeholder="Enter category"
@@ -185,9 +185,9 @@ function Product() {
 
               {/* Stock Field */}
               <div className="space-y-2">
-                <label className="text-gray-300 block">Stock</label>
+                <label className=" block">Stock</label>
                 <input
-                  className="input_field bg-gray-700 border border-gray-600 rounded-md p-3 text-white w-full focus:ring-2 focus:ring-blue-500 focus:outline-none h-10"
+                  className="input_field  border border-gray-600 rounded-md p-3  w-full focus:ring-2 focus:ring-blue-500 focus:outline-none h-10"
                   type="number"
                   {...register('stock')}
                   placeholder="Enter stock"
@@ -198,9 +198,9 @@ function Product() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-20">
               {/* Image Field */}
               <div className="space-y-2">
-                <label className="text-gray-300 block">Image</label>
+                <label className=" block">Image</label>
                 <input
-                  className="input_field bg-gray-700 border border-gray-600 rounded-md p-3 text-white w-full focus:ring-2 focus:ring-blue-500 focus:outline-none h-10"
+                  className="input_field  border border-gray-600 rounded-md p-3  w-full focus:ring-2 focus:ring-blue-500 focus:outline-none h-10"
                   type="file"
                   {...register('image')}
                 />
@@ -208,9 +208,9 @@ function Product() {
 
               {/* Discount Percentage Field */}
               <div className="space-y-2">
-                <label className="text-gray-300 block">Discount Percentage</label>
+                <label className=" block">Discount Percentage</label>
                 <input
-                  className="input_field bg-gray-700 border border-gray-600 rounded-md p-3 text-white w-full focus:ring-2 focus:ring-blue-500 focus:outline-none h-10"
+                  className="input_field  border border-gray-600 rounded-md p-3  w-full focus:ring-2 focus:ring-blue-500 focus:outline-none h-10"
                   type="number"
                   {...register('discountPercentage')}
                   placeholder="Enter discount percentage"
@@ -220,10 +220,10 @@ function Product() {
 
             {/* Description Field */}
             <div className="space-y-2">
-              <label className="text-gray-300 block">Description</label>
+              <label className=" block">Description</label>
               <input
                 type="textbox"
-                className="input_field bg-gray-700 border border-gray-600 rounded-md p-3 text-white w-full focus:ring-2 focus:ring-blue-500 focus:outline-none h-10"
+                className="input_field  border border-gray-600 rounded-md p-3  w-full focus:ring-2 focus:ring-blue-500 focus:outline-none h-10"
                 {...register('description')}
                 placeholder="Enter description"
               />

@@ -46,7 +46,7 @@ function ProductCard({ product }) {
             <span className="text-gray-500 line-through">Rs.{product.price}</span>
             <span className="text-red-600 text-lg font-bold">Rs.{product.discountPrice}</span>
           </div>
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between hover:cursor-pointer">
             <a
               onClick={handleAddToCart}
               className="rounded-lg bg-cyan-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-cyan-800 focus:outline-none focus:ring-4 focus:ring-cyan-300 dark:bg-cyan-600 dark:hover:bg-cyan-700 dark:focus:ring-cyan-800"

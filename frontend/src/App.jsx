@@ -9,6 +9,7 @@ import PrivateRoute from './components/PrivateRoute';
 import Dashboard from './components/Dashboard/Dashboard';
 import GoogleHandler from './components/GoogleHandler';
 import Product from './components/Dashboard/Product';
+import Users from './components/Dashboard/Users'
 import Cart from './pages/Cart';
 import "./App.css"
 export default function App() {
@@ -37,6 +38,7 @@ export default function App() {
           <Route path="/dashboard" element={<Dashboard />}>
             <Route index element={<Product />} />
             <Route path="products" element={<Product />} />
+            <Route path="users" element={<Users />} />
           </Route>
         </Route>
       </Routes>

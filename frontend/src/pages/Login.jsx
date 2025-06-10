@@ -101,7 +101,7 @@ function Login() {
     //   </div>
     // </div>
 
-    <div className="flex justify-center items-center min-h-screen bg-gray-900 text-white">
+    <div className="flex justify-center items-center min-h-screen ">
       <div className="flex w-[80rem] h-[35rem] shadow-lg rounded-md overflow-hidden">
 
         {/* Left side: Image */}
@@ -111,15 +111,15 @@ function Login() {
         </div>
 
         {/* Right side: Login form */}
-        <div className="w-1/2 p-12 bg-gray-800">
-          <h1 className="text-white font-bold text-4xl text-center mb-6">Welcome Back</h1>
+        <div className="w-1/2 p-12 ">
+          <h1 className="font-bold text-4xl text-center mb-6">Welcome Back</h1>
           <form onSubmit={handleSubmit(onSubmit)}>
 
             {/* Email Field */}
             <div className="relative mb-6">
-              <FaUser className="absolute left-3 top-3 text-gray-400" />
+              <FaUser className="absolute left-3 top-3 " />
               <input
-                className={`pl-10 w-full border ${errors.email ? 'border-red-500' : 'border-gray-600'} bg-gray-700 text-white rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-blue-500`}
+                className={`pl-10 w-full border ${errors.email ? 'border-red-500' : 'border-gray-600'}  rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-blue-500`}
                 type="email"
                 placeholder="Email"
                 {...register('email', { required: 'Email is required' })}
@@ -129,16 +129,16 @@ function Login() {
 
             {/* Password Field */}
             <div className="relative mb-6">
-              <FaLock className="absolute left-3 top-3 text-gray-400" />
+              <FaLock className="absolute left-3 top-3 " />
               <input
-                className={`pl-10 pr-10 w-full border ${errors.password ? 'border-red-500' : 'border-gray-600'} bg-gray-700 text-white rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-blue-500`}
+                className={`pl-10 pr-10 w-full border ${errors.password ? 'border-red-500' : 'border-gray-600'}  rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-blue-500`}
                 type={showPassword ? 'text' : 'password'}
                 placeholder="Password"
                 {...register('password', { required: 'Password is required' })}
               />
               <button
                 type="button"
-                className="absolute right-3 top-3 text-gray-400"
+                className="absolute right-3 top-3 "
                 onClick={togglePasswordVisibility}
               >
                 {showPassword ? <AiFillEyeInvisible /> : <AiFillEye />}
@@ -157,8 +157,8 @@ function Login() {
 
           {/* Google login button */}
           <button
-            className="flex items-center justify-center mt-5 bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded w-full"
-            onClick={() => window.location.href = "http://localhost:3000/api/auth/google"}
+            className="flex items-center justify-center mt-5 bg-red-500 hover:bg-red-600 text-white  py-2 px-4 rounded w-full"
+            onClick={() => window.location.href = "http://localhost:5000/api/auth/google"}
           >
             <FaGoogle className="mr-2" />
             Login with Google
@@ -166,7 +166,7 @@ function Login() {
 
           {/* New member register section */}
           <div className="mt-6 text-center">
-            <p className="text-gray-400">New member? <Link to="/register" className="text-blue-400 hover:underline">Register here</Link></p>
+            <p className="text-gray-400">New member? <Link to="/register" className="text-blue-600 hover:underline">Register here</Link></p>
           </div>
         </div>
       </div>

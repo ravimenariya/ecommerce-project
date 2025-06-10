@@ -19,8 +19,9 @@ html {
 
 
 body {
-    background-color: rgb(7, 1, 37);
+    /* background-color: rgb(7, 1, 37); */
     /* background-color: rgb(4, 1, 23); */
 
-    color: white;
+    /* color: white; */
+    color: black;
 }

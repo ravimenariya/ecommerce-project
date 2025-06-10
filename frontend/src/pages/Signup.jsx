@@ -106,19 +106,19 @@ function Signup() {
 
 
 
-    <div className="flex justify-center items-center min-h-screen bg-gray-900 text-white">
+    <div className="flex justify-center items-center min-h-screen ">
       <div className="flex w-[80rem] h-[35rem] shadow-lg rounded-md overflow-hidden">
 
         {/* Left side: Signup form */}
-        <div className="w-1/2 p-12 bg-gray-800">
-          <h1 className="text-white font-bold text-4xl text-center mb-6">Register </h1>
+        <div className="w-1/2 p-12 ">
+          <h1 className="font-bold text-4xl text-center mb-6">Register </h1>
           <form onSubmit={handleSubmit(onSubmit)}>
 
             {/* Name Field */}
             <div className="relative mb-6">
-              <FaUser className="absolute left-3 top-3 text-gray-400" />
+              <FaUser className="absolute left-3 top-3 " />
               <input
-                className="pl-10 w-full border border-gray-600 bg-gray-700 text-white rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="pl-10 w-full border border-gray-600  rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 type="text"
                 placeholder="Name"
                 {...register('name')}
@@ -128,9 +128,9 @@ function Signup() {
 
             {/* Email Field */}
             <div className="relative mb-6">
-              <FaEnvelope className="absolute left-3 top-3 text-gray-400" />
+              <FaEnvelope className="absolute left-3 top-3 " />
               <input
-                className="pl-10 w-full border border-gray-600 bg-gray-700 text-white rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="pl-10 w-full border border-gray-600  rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 type="email"
                 placeholder="Email"
                 {...register('email')}
@@ -140,9 +140,9 @@ function Signup() {
 
             {/* Phone Field */}
             <div className="relative mb-6">
-              <FaPhone className="absolute left-3 top-3 text-gray-400" />
+              <FaPhone className="absolute left-3 top-3 " />
               <input
-                className="pl-10 w-full border border-gray-600 bg-gray-700 text-white rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="pl-10 w-full border border-gray-600  rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 type="text"
                 placeholder="Phone"
                 {...register('phone')}
@@ -152,9 +152,9 @@ function Signup() {
 
             {/* Password Field */}
             <div className="relative mb-6">
-              <FaLock className="absolute left-3 top-3 text-gray-400" />
+              <FaLock className="absolute left-3 top-3 " />
               <input
-                className="pl-10 w-full border border-gray-600 bg-gray-700 text-white rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="pl-10 w-full border border-gray-600 bg- rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 type="password"
                 placeholder="Password"
                 {...register('password')}
@@ -175,7 +175,7 @@ function Signup() {
           <div className="mt-6 text-center">
             <p className="text-gray-400">
               Already have an account?{" "}
-              <Link to="/login" className="text-blue-400 hover:underline">
+              <Link to="/login" className="text-blue-600 hover:underline">
                 Login here
               </Link>
             </p>

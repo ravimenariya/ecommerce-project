@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const colors = require('colors')
-const dbConnect = async() => {
+const dbConnect = async () => {
   try {
     const connection = await mongoose.connect('mongodb://localhost:27017/ecommerce');
     console.log(colors.blue('Connection Successfull'))
@@ -9,4 +9,4 @@ const dbConnect = async() => {
   }
 };
 
-module.exports = dbConnect ;
+module.exports = dbConnect;

@@ -12,7 +12,7 @@ export const fetchProduct = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       console.log("at fetch product")
-      const res = await axios.get('http://localhost:3000/api/getproducts');
+      const res = await axios.get('http://localhost:5000/api/getproducts');
       console.log("res in fetch product => ", res)
       return res.data;
     } catch (error) {
@@ -25,9 +25,9 @@ export const createProduct = createAsyncThunk(
   'create/product',
   async (formData, { rejectWithValue }) => {
     try {
-      const res = await axios.post('http://localhost:3000/api/addproduct', formData , {
-        headers : {
-          Authorization : `Bearer ${localStorage.getItem('token')}`
+      const res = await axios.post('http://localhost:5000/api/addproduct', formData, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`
         }
       });
       return res.data;
@@ -36,6 +36,7 @@ export const createProduct = createAsyncThunk(
     }
   }
 );
+
 const productSlice = createSlice({
   name: 'product',
   initialState,

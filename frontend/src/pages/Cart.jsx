@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import CartItem from '../components/CartItem';
 
-import { addToCart, removeItems, } from '../redux/cartSlice';
+import { addToCart, removeItems, clearCart } from '../redux/cartSlice';
 import Navbar from '../components/Home/Navbar';
 
 
@@ -12,6 +12,7 @@ const Cart = () => {
     const dispatch = useDispatch();
     console.log("in cart ");
     const { items } = useSelector((state) => state.cart);
+
     console.log(items);
     const taxRate = 0.18;
     const subtotal = items.reduce(
@@ -47,6 +48,7 @@ const Cart = () => {
                                     item={item}
                                     onIncrease={handleIncreaseQuantity}
                                     onDecrease={handleDecreaseQuantity}
+
                                 />
                             ))}
                         </div>

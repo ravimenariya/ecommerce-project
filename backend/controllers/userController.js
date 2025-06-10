@@ -81,6 +81,7 @@
 
 const User = require('../models/userModel');
 const bcrypt = require('bcrypt');
+const { decrypt } = require('dotenv');
 const jwt = require('jsonwebtoken');
 
 exports.signUp = async (req, res, next) => {
@@ -114,8 +115,10 @@ exports.login = async (req, res, next) => {
     if (!user) {
       throw new Error("User is not registered")
     }
-
+    console.log("checking pass    ")
+    // const orgpass = await decrypt(user.password);
     console.log(password, user)
+    /// admin pass = R@vi1234
     //step2 check if user password matched
     const isPasswordMatch = await bcrypt.compare(password, user.password)
     if (!isPasswordMatch) {
