@@ -14,8 +14,6 @@ function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
-  console.log(location.pathname)
-  console.log(role)
   const [showPassword, setShowPassword] = useState(false);
 
   useEffect(() => {
