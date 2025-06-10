@@ -1,84 +1,3 @@
-// const User = require('../models/userModel');
-// const bcrypt = require('bcrypt');
-// const jwt = require('jsonwebtoken');
-
-// exports.signUp = async (req, res, next) => {
-//   try {
-//     const { email } = req.body;
-
-//     const isExistingUser = await User.findOne({ email });
-
-//     //check if user already exists
-//     if (isExistingUser) {
-//       throw new Error('User already exists');
-//       // return res.status(400).json({ message: 'User already exists' });
-//     }
-//     const user = await User.create(req.body);
-//     if (user) {
-//       return res.status(201).json({
-//         message: 'User registered successfully',
-//         data: user,
-//       });
-//     }
-//   } catch (err) {
-//     next(err);
-//   }
-// };
-
-
-// exports.login = async (req, res, next) => {
-//   //step 1 check if user is registered
-//   try {
-//     console.log("req.body => ", req.body);
-//     const { email, password } = req.body;
-//     const user = await User.findOne({ email });
-//     if (!user) {
-//       throw new Error("User is not registered")
-//     }
-
-//     //step2 check if user password matched
-//     const isPasswordMatch = await bcrypt.compare(password, user.password)
-//     if (!isPasswordMatch) {
-//       throw new Error("Password do not match, Please try again")
-//     }
-
-
-
-//     //generate the tooken and send it to the frontend
-//     const token = jwt.sign({ id: user._id, name: user.name, role: user.role }, 'this-is-my-secret-string', { expiresIn: '30d' })
-
-//     console.log("generation of token => ", token);
-
-//     res.status(200).json({
-//       message: "Login Successfully",
-//       token
-//     })
-
-
-//   } catch (error) {
-//     next(error)
-//   }
-
-// }
-
-// exports.googleAuth = async (req, res) => {
-//   try {
-//     console.log("in userController googleauth", req.user)
-//     const user = req.user
-//     const token = jwt.sign({ id: user._id, name: user.name, role: user.role }, 'this-is-my-secret-string', { expiresIn: '30d' })
-
-//     res.redirect(`http://localhost:5173/auth/google/callback?token=${token}&role=${user.role}`)
-
-//   } catch (error) {
-//     next(error)
-//   }
-
-// }
-
-
-
-
-
 const User = require('../models/userModel');
 const bcrypt = require('bcrypt');
 const { decrypt } = require('dotenv');
@@ -115,10 +34,6 @@ exports.login = async (req, res, next) => {
     if (!user) {
       throw new Error("User is not registered")
     }
-    console.log("checking pass    ")
-    // const orgpass = await decrypt(user.password);
-    console.log(password, user)
-    /// admin pass = R@vi1234
     //step2 check if user password matched
     const isPasswordMatch = await bcrypt.compare(password, user.password)
     if (!isPasswordMatch) {
@@ -146,7 +61,7 @@ exports.googleAuth = async (req, res) => {
     const user = req.user
     const token = jwt.sign({ id: user._id, name: user.name, role: user.role }, 'this-is-my-secret-string', { expiresIn: '30d' })
 
-    res.redirect(`http://localhost:5173/auth/google/callback?name=${user.name}&token=${token}&role=${user.role}`);
+    res.redirect(`${process.env.frontend}/auth/google/callback?name=${user.name}&token=${token}&role=${user.role}`);
 
   } catch (error) {
     next(error)

@@ -17,10 +17,8 @@ const store = configureStore({
     }
 })
 
-console.log(store.getState())
 store.subscribe(() => {
     saveState(store.getState().cart)
 })
-console.log(store);
 export default store;
 

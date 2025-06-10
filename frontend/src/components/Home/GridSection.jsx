@@ -3,7 +3,6 @@ import large from '../../assets/fitSection/bigmenimge.jpg';
 import all_products from '../../assets/all_product';
 function GridSection() {
   const topFourImage = all_products.slice(0, 4);
-  console.log(topFourImage);
   return (
     <div className="mx-auto mt-14 px-8 py-12">
       <h1 className="text-center mb-12 text-2xl font-normal leading-wide">

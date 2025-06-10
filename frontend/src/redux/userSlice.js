@@ -10,8 +10,7 @@ import { Link, Navigate, useNavigate, useLocation } from 'react-router-dom';
 
 export const Register = createAsyncThunk('/user/register', async (data, { rejectWithValue }) => {
    try {
-      const res = await axios.post('http://localhost:5000/api/register', data)
-      console.log(res.data)
+      const res = await axios.post(`${import.meta.env.VITE_BACKEND}/api/register`, data)
       return res.data
    }
    catch (error) {
@@ -23,8 +22,7 @@ export const Register = createAsyncThunk('/user/register', async (data, { reject
 
 export const userLogin = createAsyncThunk('/user/login', async (data, { rejectWithValue }) => {
    try {
-      const res = await axios.post('http://localhost:5000/api/login', data)
-      console.log(res.data)
+      const res = await axios.post(`${import.meta.env.VITE_BACKEND}/api/login`, data)
       return res.data
    }
    catch (error) {
@@ -75,7 +73,6 @@ const userSlice = createSlice({
 
          state.loading = false
          const { token } = action.payload
-         console.log(typeof (token));
          const { name, role } = jwtDecode(token)
          //update the initial state
          state.role = role;

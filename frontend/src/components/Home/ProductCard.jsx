@@ -26,7 +26,7 @@ function ProductCard({ product }) {
 
         <img
           className="w-full aspect-square object-cover rounded-lg"
-          src={`http://localhost:3000/${product.image}`}
+          src={`${import.meta.env.VITE_BACKEND}/${product.image}`}
           alt={product.name}
         />
 

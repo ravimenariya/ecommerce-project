@@ -11,9 +11,7 @@ export const fetchProduct = createAsyncThunk(
   'fetch/product',
   async (_, { rejectWithValue }) => {
     try {
-      console.log("at fetch product")
-      const res = await axios.get('http://localhost:5000/api/getproducts');
-      console.log("res in fetch product => ", res)
+      const res = await axios.get(`${import.meta.env.VITE_BACKEND}/api/getproducts`);
       return res.data;
     } catch (error) {
       return rejectWithValue(error);
@@ -25,7 +23,7 @@ export const createProduct = createAsyncThunk(
   'create/product',
   async (formData, { rejectWithValue }) => {
     try {
-      const res = await axios.post('http://localhost:5000/api/addproduct', formData, {
+      const res = await axios.post(`${import.meta.env.VITE_BACKEND}/api/addproduct`, formData, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`
         }
@@ -44,15 +42,11 @@ const productSlice = createSlice({
     builder
       .addCase(fetchProduct.pending, (state) => {
         state.loading = true;
-        console.log("in productSlice pending");
       })
       .addCase(fetchProduct.fulfilled, (state, action) => {
-        console.log("in productSlice fulfilled => ", action.payload);
         state.product = action.payload.product;
       })
       .addCase(fetchProduct.rejected, (state, action) => {
-        console.log("in productSlice refected");
-        console.log(action.payload);
         state.loading = false;
       }).addCase(createProduct.pending, (state) => {
         state.loading = true;
@@ -64,7 +58,6 @@ const productSlice = createSlice({
         )
       })
       .addCase(createProduct.rejected, (state, action) => {
-        console.log(action.payload);
         state.loading = false;
       });
   },

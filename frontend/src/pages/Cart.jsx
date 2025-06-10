@@ -10,10 +10,8 @@ import Navbar from '../components/Home/Navbar';
 
 const Cart = () => {
     const dispatch = useDispatch();
-    console.log("in cart ");
     const { items } = useSelector((state) => state.cart);
 
-    console.log(items);
     const taxRate = 0.18;
     const subtotal = items.reduce(
         (acc, item) => acc + item.quantity * item.price,
